@@ -2,12 +2,12 @@ import pickle
 import pandas as pd
 import streamlit as st
 
-# ✅ Load Model, Encoder, and Column Names
+#  Load Model, Encoder, and Column Names
 model = pickle.load(open("model.pkl", "rb"))
 encoder = pickle.load(open("encoder.pkl", "rb"))
 all_columns = pickle.load(open("columns.pkl", "rb"))  # Ensure correct feature order
 
-# ✅ Function to preprocess input
+#  Function to preprocess input
 def preprocess_input(input_data):
     df_input = pd.DataFrame([input_data])  # Convert dict to DataFrame
 
@@ -25,7 +25,7 @@ def preprocess_input(input_data):
 
     return input_df
 
-# ✅ Streamlit UI
+#  Streamlit UI
 st.title("Car Price Prediction App")
 
 # 🎯 User Inputs
@@ -56,9 +56,9 @@ user_input = {
 }
 
 if st.button("Predict Price"):
-    # ✅ Preprocess input and predict
+    #  Preprocess input and predict
     input_df = preprocess_input(user_input)
     prediction = model.predict(input_df)[0]
 
-    # ✅ Display prediction
+    #  Display prediction
     st.success(f"Estimated Car Price: ${prediction:,.2f}")
